@@ -7,8 +7,10 @@ public class movement : MonoBehaviour
 
     bool ismoving = false;
     Vector3 original_position;
+    bool direction = true;
+    int way = 2;
 
-    public int speed = 10;
+    public int speed = 5;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,34 +26,68 @@ public class movement : MonoBehaviour
             {
                 original_position = transform.position;
                 ismoving = true;
+                direction = true;
+                way = 2;
             }
            
         }
-       //else if (Input.GetKeyDown(KeyCode.S))
+       else if (Input.GetKeyDown(KeyCode.S))
         {
-         //   Move(Vector3.back);
+            if (ismoving == false)
+            {
+                original_position = transform.position;
+                ismoving = true;
+                direction = true;
+                way = -2;
+            }
         }
-       // else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKeyDown(KeyCode.D))
         {
-         //   Move(Vector3.right);
+            if (ismoving == false)
+            {
+                original_position = transform.position;
+                ismoving = true;
+                direction = false;
+                way = 2;
+            }
         }
-       // else if (Input.GetKeyDown(KeyCode.A))
+        else if (Input.GetKeyDown(KeyCode.A))
         {
-         //   Move(Vector3.left);
+            if (ismoving == false)
+            {
+                original_position = transform.position;
+                ismoving = true;
+                direction = false;
+                way = -2;
+            }
         }
-        Move(Vector3.forward);
+        Move();
     }
 
-    private void Move(Vector3 direction)
+    private void Move()
     {
         if (ismoving == true)
         {
-            if (transform.position.z >= original_position.z+2)
+            if (direction == false)
             {
-                ismoving = false;
+                if (Mathf.Round(transform.position.x) == original_position.x + way)
+                {
+                    transform.position = new Vector3(original_position.x + way, 0,original_position.z);
+                    ismoving = false;
+                }
+                else { transform.position += new Vector3(Time.deltaTime * speed*way,0,0); }
             }
-            else { transform.position += direction * Time.deltaTime * speed; }
+            else
+            {
+                if (Mathf.Round(transform.position.z) == original_position.z + way)
+                {
+                    transform.position = new Vector3(original_position.x, 0, original_position.z + way);
+                    ismoving = false;
+                }
+                else { transform.position += new Vector3(0, 0, Time.deltaTime * speed * way); }
+            }
 
         }
+
     }
 }
