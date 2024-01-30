@@ -4,90 +4,63 @@ using UnityEngine;
 
 public class movement : MonoBehaviour
 {
-
-    bool ismoving = false;
-    Vector3 original_position;
-    bool direction = true;
-    int way = 2;
-
+    bool isMoving = false;
+    Vector3 originalPosition;
+    Quaternion originalRotation;
+    Quaternion targetRotation;
     public int speed = 5;
-    // Start is called before the first frame update
+    public float rotationSpeed = 5f;
+
     void Start()
     {
-        original_position = transform.position;
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
     }
 
-    // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) ||
+            Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
         {
-            if (ismoving == false)
+            if (!isMoving)
             {
-                original_position = transform.position;
-                ismoving = true;
-                direction = true;
-                way = 2;
-            }
-           
-        }
-       else if (Input.GetKeyDown(KeyCode.S))
-        {
-            if (ismoving == false)
-            {
-                original_position = transform.position;
-                ismoving = true;
-                direction = true;
-                way = -2;
-            }
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            if (ismoving == false)
-            {
-                original_position = transform.position;
-                ismoving = true;
-                direction = false;
-                way = 2;
+                originalPosition = transform.position;
+                originalRotation = transform.rotation;
+
+                Vector3 direction = Vector3.forward;
+                if (Input.GetKeyDown(KeyCode.S))
+                    direction = Vector3.back;
+                else if (Input.GetKeyDown(KeyCode.A))
+                    direction = Vector3.left;
+                else if (Input.GetKeyDown(KeyCode.D))
+                    direction = Vector3.right;
+
+                targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+                isMoving = true;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (ismoving == false)
-            {
-                original_position = transform.position;
-                ismoving = true;
-                direction = false;
-                way = -2;
-            }
-        }
+
         Move();
     }
 
     private void Move()
     {
-        if (ismoving == true)
+        if (isMoving)
         {
-            if (direction == false)
-            {
-                if (Mathf.Round(transform.position.x) == original_position.x + way)
-                {
-                    transform.position = new Vector3(original_position.x + way, 0,original_position.z);
-                    ismoving = false;
-                }
-                else { transform.position += new Vector3(Time.deltaTime * speed*way,0,0); }
-            }
-            else
-            {
-                if (Mathf.Round(transform.position.z) == original_position.z + way)
-                {
-                    transform.position = new Vector3(original_position.x, 0, original_position.z + way);
-                    ismoving = false;
-                }
-                else { transform.position += new Vector3(0, 0, Time.deltaTime * speed * way); }
-            }
 
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+
+    
+            Vector3 movementDirection = targetRotation * Vector3.forward;
+            Vector3 targetPosition = originalPosition + movementDirection * 2;
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
+
+    
+            if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
+            {
+                transform.position = targetPosition;
+                isMoving = false;
+            }
         }
-
     }
 }
