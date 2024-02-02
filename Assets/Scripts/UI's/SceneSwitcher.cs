@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneSwitcher1 : MonoBehaviour
+public class SceneSwitcher : MonoBehaviour
 {
     bool isMainSceneActive = true;
 
@@ -24,7 +24,7 @@ public class SceneSwitcher1 : MonoBehaviour
     {
         if (isMainSceneActive)
         {
-            SwitchToSampleScenePaul();
+            SwitchToLevel1();
         }
         else
         {
@@ -34,9 +34,9 @@ public class SceneSwitcher1 : MonoBehaviour
         isMainSceneActive = !isMainSceneActive;
     }
 
-    void SwitchToSampleScenePaul()
+    void SwitchToLevel1()
     {
-        SceneManager.LoadScene("SampleScenePaul");
+        SceneManager.LoadScene("Level1");
     }
 
     void SwitchToMainScene()
