@@ -19,6 +19,11 @@ public class movement : MonoBehaviour
     private GameObject currentLog;
     private Vector3 lastLogPosition;
 
+    public GameObject live1;
+    public GameObject live2;
+    public GameObject live3;
+
+
     int wins = 0;
 
     int lives = 3;
@@ -28,6 +33,7 @@ public class movement : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         spawn = transform.position;
+
         
     }
 
@@ -139,20 +145,26 @@ public class movement : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
-
-    if (wins == 5){
-    SceneManager.LoadScene (sceneName:"Level2");
-    }
+    if (lives == 2)
+        {
+            Destroy(live1);
+        }
+        if (lives == 1)
+        {
+            Destroy(live2);
+        }
 
         if (lives == 0)
         {
+            Destroy(live3);
         SceneManager.LoadScene (sceneName:"GameOverMenu");
         }
     }
 
     void DoWin()
 {
-    wins += 1;
+        Scene scene = SceneManager.GetActiveScene();
+        wins += 1;
     transform.position = spawn; 
  
     isMoving = false;
@@ -166,12 +178,14 @@ public class movement : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    if (wins == 5){
-    SceneManager.LoadScene (sceneName:"Level2");
-    }
-        if (wins == 10)
+   
+        if (wins == 5 && scene.name == "Level2")
         {
             SceneManager.LoadScene(sceneName: "GameWinMenu");
+        }
+       else if (wins == 5)
+        {
+            SceneManager.LoadScene(sceneName: "Level2");
         }
     }
 
