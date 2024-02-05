@@ -169,6 +169,10 @@ public class movement : MonoBehaviour
     if (wins == 5){
     SceneManager.LoadScene (sceneName:"Level2");
     }
-}
+        if (wins == 10)
+        {
+            SceneManager.LoadScene(sceneName: "GameWinMenu");
+        }
+    }
 
 }
