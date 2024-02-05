@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class carmovement : MonoBehaviour
+public class tempcarmovement : MonoBehaviour
 {
     public float speed = 10f;
     public float distance = 10f;
@@ -12,6 +12,7 @@ public class carmovement : MonoBehaviour
     public int left = 0;
     public float wait = 0;
     private float savedspeed = 0f;
+
     int level = 0;
     
 
@@ -23,14 +24,13 @@ public class carmovement : MonoBehaviour
         savedspeed = speed;
         Scene currentScene = SceneManager.GetActiveScene ();
         string sceneName = currentScene.name;
-        if (sceneName == "Level2"){
+         if (sceneName == "Level2"){
             level = 0;
         }
     }
 
     void Update()
     {
-
         if (wait > 0)
         {
             speed = 0;
@@ -49,18 +49,17 @@ public class carmovement : MonoBehaviour
             }
         }
     
-     //move direction
+        //move direction
 
-     //distance checker
+        //distance checker
         traveledDistance += speed * Time.deltaTime;
 
-     //if traveled distance meets distance
+        //if traveled distance meets distance
         if (traveledDistance >= distance)
         {
-      //teleport back to start
-            transform.position = startPosition;
-            traveledDistance = 0f;
+            //teleport back to start
+           Destroy(gameObject);
+          
         }
     }
 }
-

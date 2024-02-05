@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LogScript : MonoBehaviour
 {
+    [SerializeField] private PhysicMaterial noFrictionMaterial;
     private void OnTriggerEnter(Collider other)
 {
     if (other.gameObject.CompareTag("Hazard"))
