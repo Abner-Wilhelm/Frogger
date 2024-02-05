@@ -14,6 +14,9 @@ public class movement : MonoBehaviour
     private GameObject currentLog;
     private Vector3 lastLogPosition;
 
+    [SerializeField]
+    public Animator anim;
+
     void Start()
     {
         //saves rotation and position
@@ -27,6 +30,9 @@ public class movement : MonoBehaviour
         if (!isMoving && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) ||
             Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
+            // play animation
+            anim.Play("jump",-1,0f);
+
             originalPosition = transform.position;
             originalRotation = transform.rotation;
             //direction
