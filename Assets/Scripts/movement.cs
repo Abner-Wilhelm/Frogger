@@ -21,6 +21,19 @@ public class movement : MonoBehaviour
 
     [SerializeField]
     public Animator anim;
+    public GameObject live1;
+    public GameObject live2;
+    public GameObject live3;
+
+    public AudioClip LifeLost;
+    public AudioClip LosingSound;
+    public AudioClip Move;
+    public AudioClip Collect;
+
+    private AudioSource source;
+    
+
+
     int wins = 0;
 
     int lives = 3;
@@ -30,7 +43,9 @@ public class movement : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         spawn = transform.position;
-        
+        source = GetComponent<AudioSource>();
+
+
     }
 
     void Update()
@@ -80,6 +95,7 @@ public class movement : MonoBehaviour
     {
         if (isMoving)
         {
+            source.PlayOneShot(Move);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             Vector3 movementDirection = targetRotation * Vector3.forward;
             Vector3 targetPosition = originalPosition + movementDirection * 2;
@@ -104,14 +120,17 @@ public class movement : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Hazard"))
         {
+            source.PlayOneShot(LifeLost);
             DoDeath();
         }
          else if (other.gameObject.CompareTag("Wall"))
         {
+            source.PlayOneShot(LifeLost);
             DoDeath();
         }
         else if (other.gameObject.CompareTag("Win"))
         {
+            source.PlayOneShot(Collect);
             DoWin();
         }
     }
@@ -143,20 +162,26 @@ public class movement : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
-
-    if (wins == 5){
-    SceneManager.LoadScene (sceneName:"Level2");
-    }
+    if (lives == 2)
+        {
+            Destroy(live1);
+        }
+        if (lives == 1)
+        {
+            Destroy(live2);
+        }
 
         if (lives == 0)
         {
+            Destroy(live3);
         SceneManager.LoadScene (sceneName:"GameOverMenu");
         }
     }
 
     void DoWin()
 {
-    wins += 1;
+        Scene scene = SceneManager.GetActiveScene();
+        wins += 1;
     transform.position = spawn; 
  
     isMoving = false;
@@ -170,12 +195,14 @@ public class movement : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
     }
 
-    if (wins == 5){
-    SceneManager.LoadScene (sceneName:"Level2");
-    }
-        if (wins == 10)
+   
+        if (wins == 5 && scene.name == "Level2")
         {
             SceneManager.LoadScene(sceneName: "GameWinMenu");
+        }
+       else if (wins == 5)
+        {
+            SceneManager.LoadScene(sceneName: "Level2");
         }
     }
 
