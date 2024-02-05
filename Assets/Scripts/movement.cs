@@ -1,93 +1,122 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class movement : MonoBehaviour
 {
+    [SerializeField] private PhysicMaterial noFrictionMaterial;
     bool isMoving = false;
     Vector3 originalPosition;
+
+    Vector3 spawn;
     Quaternion originalRotation;
     Quaternion targetRotation;
     public int speed = 5;
     public float rotationSpeed = 5f;
-    bool onLog;
+    bool onLog = false;
     private GameObject currentLog;
     private Vector3 lastLogPosition;
 
+    int wins = 0;
+
+    int lives = 3;
+
     void Start()
     {
-        //saves rotation and position
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+        spawn = transform.position;
+        
     }
 
     void Update()
     {
-        //inputs
         if (!isMoving && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) ||
             Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
-            originalPosition = transform.position;
-            originalRotation = transform.rotation;
-            //direction
-            Vector3 direction = Input.GetKeyDown(KeyCode.W) ? Vector3.forward
-                            : Input.GetKeyDown(KeyCode.S) ? Vector3.back
-                            : Input.GetKeyDown(KeyCode.A) ? Vector3.left
-                            : Vector3.right;
-            //sets target rotation
-            targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-            isMoving = true;
+            SetDirectionAndMove();
         }
 
         if (onLog && currentLog != null)
         {
-            //moves otter with the log
-            Vector3 deltaPosition = currentLog.transform.position - lastLogPosition;
-            transform.position += deltaPosition;
-            lastLogPosition = currentLog.transform.position;
+            FollowLog();
         }
 
-        Move();
+        MoveCharacter();
+
+        
     }
 
-    private void Move()
+    
+
+    void SetDirectionAndMove()
+    {
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
+
+        Vector3 direction = Input.GetKeyDown(KeyCode.W) ? Vector3.forward
+                        : Input.GetKeyDown(KeyCode.S) ? Vector3.back
+                        : Input.GetKeyDown(KeyCode.A) ? Vector3.left
+                        : Vector3.right;
+
+        targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+        isMoving = true;
+    }
+
+    void FollowLog()
+    {
+        Vector3 deltaPosition = currentLog.transform.position - lastLogPosition;
+        transform.position += deltaPosition;
+        lastLogPosition = currentLog.transform.position;
+    }
+
+    void MoveCharacter()
     {
         if (isMoving)
         {
-            //smoothly moves rotation with movement
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             Vector3 movementDirection = targetRotation * Vector3.forward;
             Vector3 targetPosition = originalPosition + movementDirection * 2;
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * speed);
-            //if position is met, moving = false, snaps to grid
+
             if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
             {
                 transform.position = targetPosition;
                 isMoving = false;
-                AlignToGrid(); 
             }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        //colliders for objects
-        if (other.gameObject.CompareTag("Hazard"))
-        {
-            Debug.Log("Hazard Hit");
-            DoDeath();
-        }
-        else if (other.gameObject.CompareTag("Log"))
+        
+        if (other.gameObject.CompareTag("Log"))
         {
             onLog = true;
             currentLog = other.gameObject;
             lastLogPosition = currentLog.transform.position;
         }
+        else if (other.gameObject.CompareTag("Hazard"))
+        {
+            DoDeath();
+        }
+         else if (other.gameObject.CompareTag("Wall"))
+        {
+            DoDeath();
+        }
+        else if (other.gameObject.CompareTag("Win"))
+        {
+            DoWin();
+        }
     }
+
+    
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Log"))
+        if (other.gameObject.CompareTag("Log") && other.gameObject == currentLog)
         {
             onLog = false;
             currentLog = null;
@@ -96,26 +125,54 @@ public class movement : MonoBehaviour
 
     void DoDeath()
     {
-        Debug.Log("Dead");
-      
+        lives -= 1;
+
+        transform.position = spawn; 
+
+    isMoving = false;
+    onLog = false;
+    currentLog = null;
+
+    var rb = GetComponent<Rigidbody>();
+    if (rb != null)
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
     }
 
-    void AlignToGrid()
+    if (wins == 5){
+    SceneManager.LoadScene (sceneName:"Level2");
+    }
+
+        if (lives == 0)
+        {
+        SceneManager.LoadScene (sceneName:"GameOverMenu");
+        }
+    }
+
+    void DoWin()
 {
-        //snaps otter to grid
-    Vector3 position = transform.position;
+    wins += 1;
+    transform.position = spawn; 
+ 
+    isMoving = false;
+    onLog = false;
+    currentLog = null;
 
+    var rb = GetComponent<Rigidbody>();
+    if (rb != null)
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
 
-    position.x = RoundToNearestOdd(position.x);
-    position.z = RoundToNearestOdd(position.z); 
+    if (wins == 5){
+    SceneManager.LoadScene (sceneName:"Level2");
+    }
+        if (wins == 10)
+        {
+            SceneManager.LoadScene(sceneName: "GameWinMenu");
+        }
+    }
 
-    transform.position = position;
-}
-
-float RoundToNearestOdd(float value)
-{
-        //makes number odd
-    int rounded = Mathf.RoundToInt(value);
-    return (rounded % 2 == 0) ? rounded + 1 : rounded;
-}
 }
