@@ -23,6 +23,14 @@ public class movement : MonoBehaviour
     public GameObject live2;
     public GameObject live3;
 
+    public AudioClip LifeLost;
+    public AudioClip LosingSound;
+    public AudioClip Move;
+    public AudioClip Collect;
+
+    private AudioSource source;
+    
+
 
     int wins = 0;
 
@@ -33,8 +41,9 @@ public class movement : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         spawn = transform.position;
+        source = GetComponent<AudioSource>();
 
-        
+
     }
 
     void Update()
@@ -82,6 +91,7 @@ public class movement : MonoBehaviour
     {
         if (isMoving)
         {
+            source.PlayOneShot(Move);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             Vector3 movementDirection = targetRotation * Vector3.forward;
             Vector3 targetPosition = originalPosition + movementDirection * 2;
@@ -106,14 +116,17 @@ public class movement : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Hazard"))
         {
+            source.PlayOneShot(LifeLost);
             DoDeath();
         }
          else if (other.gameObject.CompareTag("Wall"))
         {
+            source.PlayOneShot(LifeLost);
             DoDeath();
         }
         else if (other.gameObject.CompareTag("Win"))
         {
+            source.PlayOneShot(Collect);
             DoWin();
         }
     }
