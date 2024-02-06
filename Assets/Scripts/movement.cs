@@ -22,6 +22,8 @@ public class movement : MonoBehaviour
     public GameObject live1;
     public GameObject live2;
     public GameObject live3;
+    public GameObject live4;
+
 
     public AudioClip LifeLost;
     public AudioClip Move;
@@ -33,7 +35,7 @@ public class movement : MonoBehaviour
 
     int wins = 0;
 
-    int lives = 3;
+    int lives = 4;
 
     void Start()
     {
@@ -116,7 +118,7 @@ public class movement : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Hazard"))
         {
-            source.PlayOneShot(LifeLost,1);
+            source.PlayOneShot(LifeLost);
             DoDeath();
         }
          else if (other.gameObject.CompareTag("Wall"))
@@ -158,6 +160,11 @@ public class movement : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
+    if (lives == 3)
+        {
+            Destroy(live4);
+        }
+
     if (lives == 2)
         {
             Destroy(live1);
