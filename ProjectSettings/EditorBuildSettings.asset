@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/UI's/GameControlsUI.unity
     guid: 83d603cc018917d4ab2f9477abbb4fd0
   - enabled: 0
-    path: Assets/Scenes/Levels/Level1.unity
+    path: 
     guid: 8296f6d9c373c1d4bb5618bd7482fcbe
   - enabled: 1
     path: Assets/Scenes/UI's/GameOverMenu.unity
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/Level2.unity
     guid: 3d1c81d1e31036646a71cd98666648a6
+  - enabled: 1
+    path: Assets/Scenes/UI's/Credits.unity
+    guid: 8da5f55778861e44f8931fe368d38e7c
   m_configObjects: {}
