@@ -14,10 +14,22 @@ public class SceneSwitcher : MonoBehaviour
         }
 
         // Check for Escape key press to toggle scenes
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Backspace))
         {
             SwitchToMainScene();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+    {
+        
+        #if UNITY_EDITOR
+      
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        
+        Application.Quit();
+        #endif
+    }
     }
 
     void ToggleScenes()
