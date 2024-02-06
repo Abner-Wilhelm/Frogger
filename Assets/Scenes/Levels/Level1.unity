@@ -1591,6 +1591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walls (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7761870319324981355, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8215051133848245341, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -1669,6 +1673,10 @@ PrefabInstance:
     - target: {fileID: 2785025912801173552, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
       propertyPath: m_Name
       value: Walls
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761870319324981355, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8215051133848245341, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
       propertyPath: m_IsTrigger
@@ -3158,7 +3166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993524096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34, y: 0, z: -6}
+  m_LocalPosition: {x: -34.07, y: 0, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4281,6 +4289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walls (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7761870319324981355, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
 --- !u!4 &1260310957 stripped
@@ -4454,6 +4466,10 @@ PrefabInstance:
     - target: {fileID: 2785025912801173552, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
       propertyPath: m_Name
       value: Walls (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7761870319324981355, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5b752b123fd4e43869b67c4f8301bf, type: 3}
@@ -7088,7 +7104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2081510680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -34, y: 0, z: -2}
+  m_LocalPosition: {x: -34.07, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
