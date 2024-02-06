@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1359807540711761377, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1359807540711761377, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_LocalRotation.x
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1359807540711761377, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1359807540711761377, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_LocalRotation.z
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1359807540711761377, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1359807540711761377, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3445542050043496534, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_Name
-      value: Lilypad Variant
+      value: Otterpad
       objectReference: {fileID: 0}
     - target: {fileID: 3445542050043496534, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_TagString
@@ -62,37 +62,6 @@ PrefabInstance:
     - target: {fileID: 5421901064923450411, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0f18d52cf386e714783b9dc915986978, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b8530f6e5f409b48b16fa40474d19b2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: -5814230247879327577, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
---- !u!1 &528480802381841057 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3445542050043496534, guid: 07d7b78a077e29843a273115ffc857a0, type: 3}
-  m_PrefabInstance: {fileID: 2919612666544048887}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &8435112751840027182
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528480802381841057}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: -0.0778885, z: 0}
---- !u!114 &3039818895767184772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528480802381841057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f7cd2f29ba2e654d96632a37d059b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 528480802381841057, guid: 9626dc712b1118f4cb34302bdcbc9744, type: 3}
