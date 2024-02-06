@@ -3852,7 +3852,6 @@ GameObject:
   - component: {fileID: 3063397170058447477}
   - component: {fileID: 3063397170058447476}
   - component: {fileID: 3063397170058447478}
-  - component: {fileID: 11060920316524457}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -3921,28 +3920,6 @@ MonoBehaviour:
   noFrictionMaterial: {fileID: 13400000, guid: f33f196c1735fc740b64560c56c60fed, type: 2}
   speed: 10
   rotationSpeed: 10
-  anim: {fileID: 11060920316524457}
---- !u!95 &11060920316524457
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756826048432906261}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 27bbc1b54d5d74a5fa807c075dffc6ae, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2797470588289162545
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,7 +5689,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4128928416321375543}
-  m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -5729,7 +5706,7 @@ Transform:
   - {fileID: 6287012507662954870}
   m_Father: {fileID: 3245377910660627119}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4182499803296595504
 GameObject:
   m_ObjectHideFlags: 0
