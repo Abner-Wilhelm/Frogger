@@ -24,7 +24,6 @@ public class movement : MonoBehaviour
     public GameObject live3;
 
     public AudioClip LifeLost;
-    public AudioClip LosingSound;
     public AudioClip Move;
     public AudioClip Collect;
 
@@ -52,6 +51,7 @@ public class movement : MonoBehaviour
             Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
             SetDirectionAndMove();
+            source.PlayOneShot(Move);
         }
 
         if (onLog && currentLog != null)
@@ -91,7 +91,7 @@ public class movement : MonoBehaviour
     {
         if (isMoving)
         {
-            source.PlayOneShot(Move);
+            
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             Vector3 movementDirection = targetRotation * Vector3.forward;
             Vector3 targetPosition = originalPosition + movementDirection * 2;
@@ -116,7 +116,7 @@ public class movement : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Hazard"))
         {
-            source.PlayOneShot(LifeLost);
+            source.PlayOneShot(LifeLost,1);
             DoDeath();
         }
          else if (other.gameObject.CompareTag("Wall"))
