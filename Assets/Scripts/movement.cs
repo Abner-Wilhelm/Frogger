@@ -19,8 +19,6 @@ public class movement : MonoBehaviour
     private GameObject currentLog;
     private Vector3 lastLogPosition;
 
-    [SerializeField]
-    public Animator anim;
     public GameObject live1;
     public GameObject live2;
     public GameObject live3;
@@ -53,8 +51,6 @@ public class movement : MonoBehaviour
         if (!isMoving && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) ||
             Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
-            // play animation
-            anim.Play("jump",-1,0f);
             SetDirectionAndMove();
         }
 
