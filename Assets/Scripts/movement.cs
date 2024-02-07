@@ -167,7 +167,7 @@ public class movement : MonoBehaviour
 
     if (lives == 2)
         {
-            Destroy(live1);
+            Destroy(live3);
         }
         if (lives == 1)
         {
@@ -176,7 +176,7 @@ public class movement : MonoBehaviour
 
         if (lives == 0)
         {
-            Destroy(live3);
+            Destroy(live1);
         SceneManager.LoadScene (sceneName:"GameOverMenu");
         }
     }
