@@ -25,4 +25,9 @@ public class ScreenChanger : MonoBehaviour
             Screen.SetResolution(resolution,resolution,false);
         }
     }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
 }
