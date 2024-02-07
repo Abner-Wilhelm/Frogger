@@ -54,7 +54,7 @@ public class movement : MonoBehaviour
         if (!isMoving && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) ||
             Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
-            meshAnimator.Play("Jumpp",-1,0f);
+            meshAnimator.Play("TheJump",-1,0f);
             SetDirectionAndMove();
             source.PlayOneShot(Move);
         }
