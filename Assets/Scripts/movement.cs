@@ -4,6 +4,7 @@ using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class movement : MonoBehaviour
 {
     [SerializeField] private PhysicMaterial noFrictionMaterial;
@@ -66,9 +67,7 @@ public class movement : MonoBehaviour
 
         MoveCharacter();
 
-        
     }
-
     
 
     void SetDirectionAndMove()
