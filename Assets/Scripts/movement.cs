@@ -24,6 +24,8 @@ public class movement : MonoBehaviour
     public GameObject live3;
     public GameObject live4;
 
+    public Animator meshAnimator;
+
 
     public AudioClip LifeLost;
     public AudioClip Move;
@@ -43,7 +45,7 @@ public class movement : MonoBehaviour
         originalRotation = transform.rotation;
         spawn = transform.position;
         source = GetComponent<AudioSource>();
-
+        
 
     }
 
@@ -52,6 +54,7 @@ public class movement : MonoBehaviour
         if (!isMoving && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) ||
             Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
         {
+            meshAnimator.Play("TheJump",-1,0f);
             SetDirectionAndMove();
             source.PlayOneShot(Move);
         }
@@ -70,6 +73,9 @@ public class movement : MonoBehaviour
 
     void SetDirectionAndMove()
     {
+        
+
+
         originalPosition = transform.position;
         originalRotation = transform.rotation;
 
